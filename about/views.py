@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.contrib import messages
 from .models import About
 from .forms import CollaborateForm
 
@@ -13,7 +14,7 @@ def about_me(request):
         if collaborate_form.is_valid():
             collaborate = collaborate_form.save(commit=False)
             collaborate.read = False
-            comment.save()
+            collaborate.save()
             messages.add_message(
             request, messages.SUCCESS,
             'Messange is submitted and we will get back to you as soon as possible'
